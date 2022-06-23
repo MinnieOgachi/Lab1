@@ -1,17 +1,18 @@
 window.addEventListener('load', ()=>{
 
-    const form = document.querySelector("#new-task-form");
-    const input = document.querySelector('#new-task-form');
+    const form = document.querySelector("#new_task_form");
+    const input = document.querySelector('#new_task_input');
     const list_el = document.querySelector('#tasks');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e)=>{
         e.preventDefault();
 
-        const task = input.value;
+         const task = input.value;
+         if(task!=""){
         const task_el = document.createElement('div');
-        task_el.classList.add('task');
+        task_el.classList.add(task);
 
-        const task_content_el = document .createElement('div');
+        const task_content_el = document.createElement('div');
         task_el.classList.add('content');
 
         task_el.appendChild(task_content_el);
@@ -43,6 +44,7 @@ window.addEventListener('load', ()=>{
         input.value='';
 
         list_el.appendChild(task_el);
+         
 
         task_edit_el.addEventListener('click', (e)=>{
             if(task_edit_el.innerText.toLowerCase()=="edit"){
@@ -58,6 +60,10 @@ window.addEventListener('load', ()=>{
         task_del_el.addEventListener('click', (e)=>{
             list_el.removeChild(task_el);
         });
+    }
+    else{
+        window.alert("ADD A VALUE PLEASE !!!!");
+    }
 
     });
 });
